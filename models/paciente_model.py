@@ -9,7 +9,7 @@ class Paciente(db.Model):
     direccion = db.Column(db.String(200), nullable=False)
     telefono = db.Column(db.String(20), nullable=False)
 
-    consultas = db.relationship('Consulta', back_populates='paciente')
+    consultas = db.relationship('Consulta', back_populates='paciente', cascade="all, delete-orphan")
 
     def __init__(self, nombre, edad, direccion, telefono):
         self.nombre = nombre
