@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %} Historial Médico {% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Historial Médico: {{ paciente.nombre }}</h1>
+    <a href="{{ url_for('paciente.index') }}" class="btn btn-secondary">Volver</a>
+</div>
+
+<div class="card mb-4 shadow-sm">
+    <div class="card-body">
+        <h5 class="card-title">Información del Paciente</h5>
+        <p><strong>Edad:</strong> {{ paciente.edad }} años</p>
+        <p><strong>Teléfono:</strong> {{ paciente.telefono }}</p>
+        <p><strong>Dirección:</strong> {{ paciente.direccion }}</p>
+    </div>
+</div>
+
+<h3>Consultas Realizadas</h3>
+{% if paciente.consultas %}
+<div class="list-group">
+    {% for c in paciente.consultas %}
+    <div class="list-group-item list-group-item-action flex-column align-items-start mb-2 border rounded shadow-sm">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Fecha: {{ c.fecha.strftime('%d/%m/%Y %H:%M') }}</h5>
+            <small>Médico: {{ c.medico.nombre }}</small>
+        </div>
+        <p class="mb-1"><strong>Diagnóstico:</strong> {{ c.diagnostico }}</p>
+        <small class="text-muted"><strong>Tratamiento:</strong> {{ c.tratamiento }}</small>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="alert alert-info">Este paciente no tiene consultas registradas.</div>
+{% endif %}
+{% endblock %}

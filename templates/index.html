@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %} Panel Principal {% endblock %}
+{% block content %}
+<div class="p-5 mb-4 bg-light rounded-3 shadow-sm">
+    <div class="container-fluid py-5 text-center">
+        <h1 class="display-5 fw-bold">Sistema de Gestión de Clínica Médica</h1>
+        <p class="col-md-12 fs-4">Bienvenido al panel de administración. Seleccione una opción del menú superior para comenzar.</p>
+        <div class="d-flex justify-content-center gap-3 mt-4">
+            <a href="{{ url_for('consulta.index') }}" class="btn btn-primary btn-lg">Gestionar Consultas</a>
+            <a href="{{ url_for('paciente.index') }}" class="btn btn-outline-secondary btn-lg">Ver Pacientes</a>
+        </div>
+    </div>
+</div>
+
+<div class="row text-center mt-5">
+    <div class="col-md-4">
+        <div class="card p-3 shadow-sm h-100 border-primary">
+            <div class="card-body">
+                <h3 class="card-title">Médicos</h3>
+                <p class="card-text">Administre el personal médico y sus especialidades.</p>
+                <a href="{{ url_for('medico.index') }}" class="btn btn-primary">Ir a Médicos</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card p-3 shadow-sm h-100 border-success">
+            <div class="card-body">
+                <h3 class="card-title">Pacientes</h3>
+                <p class="card-text">Registro de pacientes y sus historiales médicos.</p>
+                <a href="{{ url_for('paciente.index') }}" class="btn btn-success">Ir a Pacientes</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card p-3 shadow-sm h-100 border-info">
+            <div class="card-body">
+                <h3 class="card-title">Informes</h3>
+                <p class="card-text">Generación de reportes PDF de las consultas.</p>
+                <a href="{{ url_for('consulta.reporte_pdf') }}" class="btn btn-info text-white">Descargar PDF</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
