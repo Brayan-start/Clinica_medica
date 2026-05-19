@@ -23,7 +23,7 @@ app.register_blueprint(consulta_bp)
 app.register_blueprint(usuario_bp)
 
 @app.route("/")
-def home():
+def index():
     if 'user_id' not in session:
         return redirect(url_for('usuario.login'))
     return render_template('index.html')

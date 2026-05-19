@@ -52,7 +52,7 @@ def login():
             session['user_id'] = usuario.id
             session['username'] = usuario.username
             session['rol'] = usuario.rol
-            return redirect(url_for('home'))
+            return redirect(url_for('index'))
         flash("Usuario o contraseña incorrectos")
     return usuario_view.login()
 
