@@ -22,6 +22,14 @@ app.register_blueprint(paciente_bp)
 app.register_blueprint(consulta_bp)
 app.register_blueprint(usuario_bp)
 
+# Inicialización de la base de datos (Compatible con Render/Gunicorn)
+with app.app_context():
+    db.create_all()
+    # Crear usuario administrador por defecto si no existe
+    if not Usuario.get_by_username('admin'):
+        admin = Usuario("Administrador", "admin", "admin123", "admin")
+        admin.save()
+
 @app.route("/")
 def dashboard():
     if 'user_id' not in session:
@@ -29,10 +37,4 @@ def dashboard():
     return render_template('index.html')
 
 if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
-        # Crear usuario administrador por defecto si no existe
-        if not Usuario.get_by_username('admin'):
-            admin = Usuario("Administrador", "admin", "admin123", "admin")
-            admin.save()
     app.run(debug=True)
